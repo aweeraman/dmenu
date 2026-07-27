@@ -1,5 +1,6 @@
 # dmenu version
 VERSION = 5.0
+UNAME != uname -s
 
 # paths
 PREFIX = /usr/local
@@ -15,8 +16,9 @@ XINERAMAFLAGS = -DXINERAMA
 # freetype
 FREETYPELIBS = -lfontconfig -lXft
 FREETYPEINC = /usr/include/freetype2
-# OpenBSD (uncomment)
-#FREETYPEINC = $(X11INC)/freetype2
+.if ${UNAME} == "OpenBSD"
+FREETYPEINC = $(X11INC)/freetype2
+.endif
 
 # includes and libs
 INCS = -I$(X11INC) -I$(FREETYPEINC)
